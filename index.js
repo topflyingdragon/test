@@ -37,7 +37,6 @@ function start_test(){
 
     setInterval(function(){
         var buf = port.read();
-        console.log(buf);
         if(buf){
             console.log('received: '+buf.toString());
         };
