@@ -37,8 +37,8 @@ function start_test(){
     setInterval(function(){
         var buf = port.read();
         console.log(buf);
-        //if(buf){
-        //    console.log(buf.toString());
-        //};
+        if(buf){
+            console.log(buf.toString());
+        };
     },1000);
 }
