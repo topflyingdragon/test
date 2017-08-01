@@ -15,23 +15,27 @@ port.on('open', function() {
 });
 
 function start_test(){
-    const msg1 = 'set_config&TRANSMIT_TIMER_INTERVAL=5&ACK& ';
-    const msg2 = 'set_config&RECIVE_TIMER_INTERVAL=5&ACK& ';
-    
-    port.write(msg1, function(err) {
-        if (err) {
-            return console.log('Error on write: ', err.message);
-        }
-        console.log('message written:' + msg1);
-    });
-    port.write(msg2, function(err) {
-        if (err) {
-            return console.log('Error on write: ', err.message);
-        }
-        console.log('message written:' + msg2);
-    });
+    var cmds = [
+        'set_config&ID=11111&ACK& ',
+        'set_config&EID=2222&ACK& ',
+        'set_config&TRANSMIT_TIMER_INTERVAL=5&ACK& ',
+        'set_config&RECIVE_TIMER_INTERVAL=5&ACK& '
+    ];
+
+    for(var i=0; i<cmds.length; i++){
+        var cmd = cmds[i];
+        setTimeout(function(){
+            port.write(cmd, function(err) {
+                if (err) return console.log('Error on write: ', err.message);
+                console.log('message written:' + msg1);
+            });
+        }, i*1000);
+    };
 
     setInterval(function(){
-        console.log(port.read());
+        var buf = port.read();
+        if(buf){
+            console.log(buf.toString());
+        };
     },1000);
 }
