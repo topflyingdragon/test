@@ -1,6 +1,10 @@
 var SerialPort = require('serialport');
 var port = new SerialPort('/dev/ttyS', {
-    baudRate: 115200
+    baudRate: 115200,
+    dataBits: 8,
+    parity: 'none',
+    stopBits: 1,
+    flowControl: false
 }, function(err){
     console.log(err);
 });

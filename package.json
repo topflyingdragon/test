@@ -11,5 +11,8 @@
     "url": "ckgit@211.5.155.3:/home/ckgit/cterm.git"
   },
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "serialport": "^5.0.0"
+  }
 }
