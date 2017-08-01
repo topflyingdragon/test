@@ -29,7 +29,7 @@ function start_test(){
                 if (err) {
                     return console.log('Error on write: ', err.message);
                 }
-                console.log('message written:' + cmd);
+                console.log('message written: ' + cmd);
             });
         }, i*1000);
     };
@@ -38,7 +38,7 @@ function start_test(){
         var buf = port.read();
         console.log(buf);
         if(buf){
-            console.log(buf.toString());
+            console.log('received: '+buf.toString());
         };
     },1000);
 }
