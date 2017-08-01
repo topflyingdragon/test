@@ -24,7 +24,9 @@ function start_test(){
 
     for(var i=0; i<cmds.length; i++){
         var cmd = cmds[i];
-        sendCmd(cmd);
+        setTimeout(function(){
+            sendCmd(cmd);
+        }, i*1000);
     };
 
     function sendCmd(cmd){
