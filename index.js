@@ -27,7 +27,7 @@ function start_test(){
         setTimeout(function(){
             port.write(cmd, function(err) {
                 if (err) return console.log('Error on write: ', err.message);
-                console.log('message written:' + msg1);
+                console.log('message written:' + cmd);
             });
         }, i*1000);
     };
