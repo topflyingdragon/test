@@ -26,7 +26,9 @@ function start_test(){
         var cmd = cmds[i];
         setTimeout(function(){
             port.write(cmd, function(err) {
-                if (err) return console.log('Error on write: ', err.message);
+                if (err) {
+                    return console.log('Error on write: ', err.message);
+                }
                 console.log('message written:' + cmd);
             });
         }, i*1000);
@@ -34,8 +36,9 @@ function start_test(){
 
     setInterval(function(){
         var buf = port.read();
-        if(buf){
-            console.log(buf.toString());
-        };
+        console.log(buf);
+        //if(buf){
+        //    console.log(buf.toString());
+        //};
     },1000);
 }
