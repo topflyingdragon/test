@@ -24,13 +24,17 @@ function start_test(){
 
     for(var i=0; i<cmds.length; i++){
         var cmd = cmds[i];
+        sendCmd(cmd);
+    };
+
+    function sendCmd(cmd){
         port.write(cmd, function(err) {
             if (err) {
                 return console.log('Error on write: ', err.message);
             }
             console.log('message written: ' + cmd);
         });
-    };
+    }
 
     setInterval(function(){
         var buf = port.read();
