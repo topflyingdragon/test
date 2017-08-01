@@ -14,6 +14,15 @@ port.on('open', function() {
     start_test();
 });
 
+function sendCmd(cmd){
+    port.write(cmd, function(err) {
+        if (err) {
+            return console.log('Error on write: ', err.message);
+        }
+        console.log('message written: ' + cmd);
+    });
+}
+
 function start_test(){
     var cmds = [
         'set_config&ID=11111&ACK& ',
@@ -21,22 +30,10 @@ function start_test(){
         'set_config&TRANSMIT_TIMER_INTERVAL=5&ACK& ',
         'set_config&RECIVE_TIMER_INTERVAL=5&ACK& '
     ];
-
-    for(var i=0; i<cmds.length; i++){
-        var cmd = cmds[i];
-        setTimeout(function(){
-            sendCmd(cmd);
-        }, i*1000);
-    };
-
-    function sendCmd(cmd){
-        port.write(cmd, function(err) {
-            if (err) {
-                return console.log('Error on write: ', err.message);
-            }
-            console.log('message written: ' + cmd);
-        });
-    }
+    setTimeout(function(){sendCmd(cmds[0])},0);
+    setTimeout(function(){sendCmd(cmds[1])},1000);
+    setTimeout(function(){sendCmd(cmds[2])},2000);
+    setTimeout(function(){sendCmd(cmds[3])},3000);
 
     setInterval(function(){
         var buf = port.read();
